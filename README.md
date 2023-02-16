@@ -7,6 +7,7 @@
 * user can click into recipe to load full-screen recipe page (displays title, image, ingredients, instructions, and notes of a recipe)
 * user can save/remove specific recipes to their account
 * user can add a recipe to the database
+* user can search for a specific recipe
 
 ### Dependencies: ###
 * Swift (UIKit, SD_WebImage)
