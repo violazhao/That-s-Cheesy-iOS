@@ -8,6 +8,7 @@
 * user can save/remove specific recipes to their account
 * user can add a recipe to the database
 * user can search for a specific recipe
+* uses core data to store all recipes, saved recipes, and filtered recipes based on search query
 
 ### Dependencies: ###
 * Swift (UIKit, SD_WebImage)
