@@ -11,4 +11,4 @@
 * uses core data to store all recipes, saved recipes, and filtered recipes based on search query
 
 ### Dependencies: ###
-* Swift (UIKit, SD_WebImage)
+* Swift (UIKit, SD_WebImage, Core Data)
