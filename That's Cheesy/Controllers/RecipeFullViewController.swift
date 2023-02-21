@@ -201,6 +201,8 @@ class RecipeFullViewController: UIViewController {
         imageURL = "\(modelImage ?? "")"
         let url = URL(string: "\(modelImage ?? "")")
         recipeImage.sd_setImage(with: url, placeholderImage: UIImage(named: "imgCooking"), completed: nil)
-        recipeId = model.id!
+        if let modelId = model.id {
+            recipeId = modelId
+        }
     }
 }
