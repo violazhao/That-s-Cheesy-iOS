@@ -12,3 +12,8 @@
 
 ### Dependencies: ###
 * Swift (UIKit, SD_WebImage, Core Data)
+
+
+### Demo ###
+https://user-images.githubusercontent.com/29643993/220760475-3b507329-74e6-4851-aa7b-56287ebf39c5.mov
+
