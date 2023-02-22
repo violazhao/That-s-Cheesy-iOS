@@ -87,11 +87,8 @@ class AddRecipeViewController: UIViewController {
     }()
     
     @objc func buttonAction(sender: UIButton!) {
-//        RecipeManager.shared.add(recipe: Recipe(recipeName: titleField.text ?? "", image: imageURL.text ?? "", ingredients: ingredients.text ?? "", instructions: instructions.text ?? "", notes: notes.text ?? ""))
         RecipeManager().addRecipe(recipeName: titleField.text ?? "", image: imageURL.text ?? "", ingredients: ingredients.text ?? "", instructions: instructions.text ?? "", notes: notes.text ?? "", saved: false)
         added += 1
-//        navigationController?.setViewControllers([HomeViewController()], animated: false)
-//        navigationController?.pushViewController(HomeViewController(), animated: false)
         print("added: \(titleField.text ?? "")")
         titleField.text = nil
         imageURL.text = nil
@@ -99,11 +96,18 @@ class AddRecipeViewController: UIViewController {
         instructions.text = nil
         notes.text = nil
     }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
         view.addSubview(cheeseImage)
         
