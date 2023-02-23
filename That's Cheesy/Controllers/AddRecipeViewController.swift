@@ -11,6 +11,18 @@ var added = 0
 // add recipe page
 class AddRecipeViewController: UIViewController {
     
+    var scrollView = UIScrollView()
+    var contentView = UIView()
+
+    func setupScrollView() {
+        scrollView = UIScrollView(frame: view.bounds)
+        contentView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height + 80))
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.contentSize = contentView.bounds.size
+   }
+    
     // header title "Add Recipe"
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -98,31 +110,33 @@ class AddRecipeViewController: UIViewController {
     }
     
     @objc func dismissKeyboard() {
-        view.endEditing(true)
+        contentView.endEditing(true)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupScrollView()
         
         view.backgroundColor = .systemBackground
+        contentView.backgroundColor = nil
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        contentView.addGestureRecognizer(tap)
 
-        view.addSubview(cheeseImage)
+        contentView.addSubview(cheeseImage)
         
         titleLabel.text = "Add Recipe"
-        view.addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         
-        view.addSubview(titleField)
+        contentView.addSubview(titleField)
         
-        view.addSubview(tempImage)
+        contentView.addSubview(tempImage)
         
-        view.addSubview(imageURL)
-        view.addSubview(ingredients)
-        view.addSubview(instructions)
-        view.addSubview(notes)
-        view.addSubview(addBtn)
+        contentView.addSubview(imageURL)
+        contentView.addSubview(ingredients)
+        contentView.addSubview(instructions)
+        contentView.addSubview(notes)
+        contentView.addSubview(addBtn)
         
         applyConstraints()
     }
@@ -130,64 +144,64 @@ class AddRecipeViewController: UIViewController {
     // applying constraints to each header item
     private func applyConstraints() {
         let cheeseConstraints = [
-            cheeseImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            cheeseImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             cheeseImage.widthAnchor.constraint(equalToConstant: 40),
             cheeseImage.heightAnchor.constraint(equalToConstant: 42),
-            cheeseImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cheeseImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             cheeseImage.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -10)
         ]
         
         let titleLabelConstraints = [
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: titleField.topAnchor, constant: -20)
         ]
         
         let titleConstraints = [
             titleField.widthAnchor.constraint(equalToConstant: 300),
             titleField.heightAnchor.constraint(equalToConstant: 30),
-            titleField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleField.bottomAnchor.constraint(equalTo: tempImage.topAnchor, constant: -15)
         ]
         
         let tempImageConstraints = [
             tempImage.widthAnchor.constraint(equalToConstant: 250),
             tempImage.heightAnchor.constraint(equalToConstant: 250),
-            tempImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tempImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             tempImage.bottomAnchor.constraint(equalTo: imageURL.topAnchor, constant: -15)
         ]
         
         let imageURLConstraints = [
             imageURL.widthAnchor.constraint(equalToConstant: 300),
             imageURL.heightAnchor.constraint(equalToConstant: 30),
-            imageURL.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageURL.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             imageURL.bottomAnchor.constraint(equalTo: ingredients.topAnchor, constant: -10)
         ]
         
         let ingredientsConstraints = [
             ingredients.widthAnchor.constraint(equalToConstant: 300),
             ingredients.heightAnchor.constraint(equalToConstant: 30),
-            ingredients.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            ingredients.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             ingredients.bottomAnchor.constraint(equalTo: instructions.topAnchor, constant: -10)
         ]
         
         let instructionsConstraints = [
             instructions.widthAnchor.constraint(equalToConstant: 300),
             instructions.heightAnchor.constraint(equalToConstant: 30),
-            instructions.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructions.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             instructions.bottomAnchor.constraint(equalTo: notes.topAnchor, constant: -10)
         ]
         
         let notesConstraints = [
             notes.widthAnchor.constraint(equalToConstant: 300),
             notes.heightAnchor.constraint(equalToConstant: 100),
-            notes.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            notes.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             notes.bottomAnchor.constraint(equalTo: addBtn.topAnchor, constant: -15)
         ]
         
         let addConstraints = [
             addBtn.widthAnchor.constraint(equalToConstant: 80),
             addBtn.heightAnchor.constraint(equalToConstant: 30),
-            addBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            addBtn.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ]
         
         NSLayoutConstraint.activate(cheeseConstraints)
